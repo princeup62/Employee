@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function Pagination({ setPageSlice, showPerPage }) {
+function Pagination({ setPageSlice, showPerPage, empData }) {
   const [counter, setCounter] = useState(1);
 
   useEffect(() => {
@@ -11,19 +11,21 @@ function Pagination({ setPageSlice, showPerPage }) {
   const handleCounter = (e) => {
     const name = e.target.name;
     if (name === "next") {
-      setCounter(counter + 1);
+      if (counter < Math.ceil(empData.length / showPerPage))
+        setCounter(counter + 1);
     } else {
-      setCounter(counter - 1);
+      if (counter === 1) setCounter(1);
+      else setCounter(counter - 1);
     }
   };
 
   return (
     <div className="my-5 d-flex justify-content-between">
       <button className="btn btn-primary" name="prev" onClick={handleCounter}>
-        Prev
+        {`<<`}
       </button>
       <button className="btn btn-primary" name="next" onClick={handleCounter}>
-        Next
+        {`>>`}
       </button>
     </div>
   );

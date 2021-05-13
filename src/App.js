@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Pagination from "./components/Pagination";
+import Mod from "./components/Mod";
 
 function App() {
   const [empData, setEmpData] = useState([]);
@@ -23,7 +24,7 @@ function App() {
     );
   }, []);
 
-  let handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
 
@@ -118,7 +119,12 @@ function App() {
           </button>
         </form>
       </div>
-      <Pagination setPageSlice={setPageSlice} showPerPage={showPerPage} />
+      <Pagination
+        setPageSlice={setPageSlice}
+        showPerPage={showPerPage}
+        empData={empData}
+      />
+      <Mod />
     </div>
   );
 }
