@@ -34,11 +34,11 @@ function App() {
     console.log(AddInput);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (name, email, position) => {
     const data = {
-      Name: AddInput.addName,
-      Email: AddInput.addEmail,
-      Position: AddInput.addPosition,
+      Name: name,
+      Email: email,
+      Position: position,
     };
 
     setAddInput({ addName: "", addEmail: "", addPosition: "" });
@@ -82,49 +82,13 @@ function App() {
             ))}
           </tbody>
         </table>
-
-        <form>
-          <div className="mb-3">
-            <input
-              name="iname"
-              type="text"
-              value={AddInput.addName}
-              placeholder="name"
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="mb-3">
-            <input
-              name="imail"
-              type="text"
-              value={AddInput.addEmail}
-              placeholder="Email"
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="mb-3">
-            <input
-              name="iposition"
-              type="iposition"
-              value={AddInput.addPosition}
-              placeholder="Position"
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <button type="button" class="btn btn-primary" onClick={handleSubmit}>
-            Add New
-          </button>
-        </form>
       </div>
       <Pagination
         setPageSlice={setPageSlice}
         showPerPage={showPerPage}
         empData={empData}
       />
-      <Mod />
+      <Mod handleSubmit={handleSubmit} />
     </div>
   );
 }
